@@ -1,2 +1,30 @@
-# Project-Game-LTNC
-Dự án game môn lập trình nâng cao của nhóm 4 
+# ✈️ Sky Force - Game Lập Trình Nâng Cao (Nhóm 27)
+
+Dự án phát triển tựa game bắn máy bay không gian (Sky Force) sử dụng ngôn ngữ Java và thư viện đồ họa JavaFX.
+
+## 🛠️ Công Nghệ Sử Dụng
+
+- **Ngôn ngữ:** Java (Phiên bản 11)
+- **Thư viện đồ họa:** JavaFX (Phiên bản 13)
+- **Quản lý dự án:** Maven
+
+## 📂 Cấu Trúc Thư Mục
+
+Dự án áp dụng mô hình phân tách rõ ràng (MVC-like) để tối ưu việc quản lý:
+
+- `src/main/java/com/nhom27/skyforce/`: Chứa toàn bộ mã nguồn Java.
+  - `main/`: Lõi chương trình, cấu hình cửa sổ và Game Loop.
+  - `entities/`: Các thực thể như Player, Enemy, Bullet.
+  - `graphics/`: Xử lý hình ảnh tĩnh, Animation.
+  - `input/`: Điều khiển bàn phím, chuột.
+  - `audio/`: Xử lý âm thanh, nhạc nền.
+  - `utils/`: Tiện ích dùng chung, tính toán va chạm.
+- `src/main/resources/com/nhom27/skyforce/`: Chứa tài nguyên vật lý.
+  - `textures/`: Hình ảnh (.png, .jpg).
+  - `sounds/`: Âm thanh (.wav).
+
+## 🚀 Hướng Dẫn Chạy Game
+
+1. Mở dự án bằng IDE (VS Code, IntelliJ, Eclipse).
+2. Chạy file `Launcher.java` nằm trong thư mục `src/main/java/com/nhom27/skyforce/main/`.
+   _(Lưu ý: Chạy bằng file Launcher để tránh lỗi thiếu thư viện JavaFX)._
