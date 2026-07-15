@@ -1,7 +1,6 @@
 package com.nhom27.skyforce.scenes;
 
-import java.net.URL;
-
+import com.nhom27.skyforce.audio.AudioManager;
 import com.nhom27.skyforce.ui.buttons.CustomButton;
 import com.nhom27.skyforce.utils.AssetManager;
 
@@ -14,6 +13,7 @@ import javafx.scene.layout.VBox;
 
 public class MenuScene {
     private Scene scene; // Lưu trữ bản 2D
+    private CustomButton btnSound;
 
     public MenuScene() {
         createMenuScene();
@@ -45,15 +45,20 @@ public class MenuScene {
         CustomButton btnPlay = new CustomButton("Chơi Game", () -> {
 
         });
-        CustomButton btnOptions = new CustomButton("Cài Đặt", () -> {
-
+        btnSound = new CustomButton("Nhạc Nền: Bật", () -> {
+            AudioManager.getInstance().toggleMute();
+            if (AudioManager.getInstance().isMuted()) {
+                btnSound.updateLabel("Nhạc Nền: Tắt");
+            } else {
+                btnSound.updateLabel("Nhạc Nền: Bật");
+            }
         });
         CustomButton btnExit = new CustomButton("Thoát", () -> {
             System.exit(0);
         });
 
         // Đặt nút bấm lên giá đỡ
-        menuBox.getChildren().addAll(btnPlay, btnOptions, btnExit);
+        menuBox.getChildren().addAll(btnPlay, btnSound, btnExit);
 
         // Gắn khung ảnh, các nút lên "tường"
         if (bgImageView != null) {

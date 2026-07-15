@@ -1,5 +1,6 @@
 package com.nhom27.skyforce.main;
 
+import com.nhom27.skyforce.audio.AudioManager;
 import com.nhom27.skyforce.scenes.SceneManager;
 import com.nhom27.skyforce.utils.AssetManager;
 
@@ -19,6 +20,9 @@ public class Main extends Application {
 
         // Tải tài nguyên (Ảnh & Âm Thanh) -- Chưa code load âm thanh
         AssetManager.loadAllAsset();
+
+        // Bật Nhạc nền
+        AudioManager.getInstance();
 
         // Giao cửa sổ cho SceneManager quản lý
         SceneManager.getInstance().setPrimaryStage(primaryStage);

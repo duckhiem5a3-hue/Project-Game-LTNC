@@ -6,6 +6,8 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 
 public class CustomButton extends Button {
+    private Label textLabel;
+
     public CustomButton(String text, Runnable action) {
         this.getStyleClass().add("button");
 
@@ -18,7 +20,7 @@ public class CustomButton extends Button {
         StackPane front = new StackPane();
         front.getStyleClass().add("front");
 
-        Label textLabel = new Label(text);
+        textLabel = new Label(text);
         front.getChildren().add(textLabel);
 
         StackPane graphicPane = new StackPane();
@@ -32,10 +34,14 @@ public class CustomButton extends Button {
                 .toExternalForm();
         this.getStylesheets().add(css);
 
-        this.setOnMouseClicked(event -> {
+        this.setOnAction(event -> {
             if (action != null) {
                 action.run();
             }
         });
+    }
+
+    public void updateLabel(String newText) {
+        textLabel.setText(newText);
     }
 }
