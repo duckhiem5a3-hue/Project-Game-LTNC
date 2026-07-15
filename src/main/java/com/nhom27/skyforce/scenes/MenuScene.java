@@ -2,6 +2,7 @@ package com.nhom27.skyforce.scenes;
 
 import java.net.URL;
 
+import com.nhom27.skyforce.Entitiy.GameObject;
 import com.nhom27.skyforce.ui.buttons.CustomButton;
 
 import javafx.geometry.Pos;
@@ -22,6 +23,21 @@ public class MenuScene {
     }
 
     private void createMenuScene() {
+
+        //thử tạo gameobject
+        String planePath = "/com/nhom27/skyforce/textures/menu/Spaceship1Blue.png";
+        URL planeimageUrl = getClass().getResource(planePath);
+        Image planeimg = new Image(planeimageUrl.toString());
+        ImageView planeimg2 = new ImageView(planeimg);
+        planeimg2.setFitWidth(100);
+        planeimg2.setFitHeight(100);
+        GameObject plane = new GameObject(planeimg2, 0, 0);
+        
+       
+        
+
+
+
         // Tạo một "tường" để có thể xếp các khung ảnh, nút lên
         StackPane root = new StackPane();
         String imagePath = "/com/nhom27/skyforce/textures/menu/background.png";
@@ -61,11 +77,15 @@ public class MenuScene {
         menuBox.getChildren().addAll(btnPlay, btnOptions, btnExit);
 
         // Gắn khung ảnh, các nút lên "tường"
+        
         if (bgImageView != null) {
             root.getChildren().addAll(bgImageView, menuBox);
         } else {
             root.getChildren().add(menuBox);
         }
+        
+        //root.getChildren().add(plane.getView());
+
         // Đóng gói "tường" thành "gói 2D"
         scene = new Scene(root, com.nhom27.skyforce.main.Main.WIDTH, com.nhom27.skyforce.main.Main.HEIGHT);
     }
