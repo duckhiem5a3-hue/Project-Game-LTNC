@@ -3,6 +3,7 @@ package com.nhom27.skyforce.scenes;
 import java.net.URL;
 
 import com.nhom27.skyforce.ui.buttons.CustomButton;
+import com.nhom27.skyforce.utils.AssetManager;
 
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -21,21 +22,18 @@ public class MenuScene {
     private void createMenuScene() {
         // Tạo một "tường" để có thể xếp các khung ảnh, nút lên
         StackPane root = new StackPane();
-        String imagePath = "/com/nhom27/skyforce/textures/menu/background.png";
-        URL imageUrl = getClass().getResource(imagePath);
-
+        // Tải ảnh vào bộ nhớ
+        Image bgImage = AssetManager.getImage("background_home");
         // Tạo khung ảnh
         ImageView bgImageView = null;
 
-        if (imageUrl != null) {
-            // Tải ảnh vào bộ nhớ
-            Image bgImage = new Image(imageUrl.toString());
+        if (bgImage != null) {
             // Đóng khung ảnh
             bgImageView = new ImageView(bgImage);
             bgImageView.setFitWidth(com.nhom27.skyforce.main.Main.WIDTH);
             bgImageView.setFitHeight(com.nhom27.skyforce.main.Main.HEIGHT);
         } else {
-            System.out.println("Lỗi: Không tìm thấy ảnh nền menu " + imagePath);
+            System.out.println("Lỗi: Không tìm thấy ảnh nền menu!");
             root.setStyle("-fx-background-color: black;");
         }
 

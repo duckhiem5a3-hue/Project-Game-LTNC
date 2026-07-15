@@ -1,6 +1,7 @@
 package com.nhom27.skyforce.main;
 
 import com.nhom27.skyforce.scenes.SceneManager;
+import com.nhom27.skyforce.utils.AssetManager;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -15,6 +16,9 @@ public class Main extends Application {
     public void start(Stage primaryStage) {
         // Đưa "gói 2D" lên cửa sổ hiển thị trò chơi
         primaryStage.setTitle("Sky Force - Nhóm 27");
+
+        // Tải tài nguyên (Ảnh & Âm Thanh) -- Chưa code load âm thanh
+        AssetManager.loadAllAsset();
 
         // Giao cửa sổ cho SceneManager quản lý
         SceneManager.getInstance().setPrimaryStage(primaryStage);
