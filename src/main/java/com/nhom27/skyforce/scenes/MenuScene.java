@@ -10,14 +10,11 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 
 public class MenuScene {
-    private Stage stage; // Cửa sổ hiển thị
     private Scene scene; // Lưu trữ bản 2D
 
-    public MenuScene(Stage stage) {
-        this.stage = stage;
+    public MenuScene() {
         createMenuScene();
     }
 

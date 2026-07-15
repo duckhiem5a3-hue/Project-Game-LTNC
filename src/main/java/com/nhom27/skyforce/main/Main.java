@@ -1,6 +1,6 @@
 package com.nhom27.skyforce.main;
 
-import com.nhom27.skyforce.scenes.MenuScene;
+import com.nhom27.skyforce.scenes.SceneManager;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -16,9 +16,11 @@ public class Main extends Application {
         // Đưa "gói 2D" lên cửa sổ hiển thị trò chơi
         primaryStage.setTitle("Sky Force - Nhóm 27");
 
-        // Tạo Menu
-        MenuScene menuScene = new MenuScene(primaryStage);
-        primaryStage.setScene(menuScene.getScene());
+        // Giao cửa sổ cho SceneManager quản lý
+        SceneManager.getInstance().setPrimaryStage(primaryStage);
+
+        // Bật Menu trang chủ
+        SceneManager.getInstance().switchToMenu();
 
         // Không cho người dùng thay đổi kích thước cửa sổ
         primaryStage.setResizable(false);
