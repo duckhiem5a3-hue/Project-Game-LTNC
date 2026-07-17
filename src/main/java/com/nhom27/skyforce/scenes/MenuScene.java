@@ -24,7 +24,7 @@ public class MenuScene {
 
         //thử tạo gameobject
         
-        GameObject plane = new GameObject();
+        //GameObject plane = new GameObject();
         
        
     
@@ -71,7 +71,7 @@ public class MenuScene {
             root.getChildren().add(menuBox);
         }
         
-        root.getChildren().add(plane.getView());
+        //root.getChildren().add(plane.getView());
 
         // Đóng gói "tường" thành "gói 2D"
         scene = new Scene(root, com.nhom27.skyforce.main.Main.WIDTH, com.nhom27.skyforce.main.Main.HEIGHT);

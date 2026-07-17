@@ -4,25 +4,13 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import java.lang.Math;
 import java.net.URL;
-public class GameObject {
+public abstract class GameObject {
     // 1. Các thuộc tính Logic (Data)
-    private int x, y;
-    private int speed;
-
-    public int getX() {
-        return this.x;
-    } 
-    public int getY() {
-        return this.y;
-    }
-    public void setX(int newX) {
-        this.x = newX;
-    }
-    public void setY(int newY) {
-        this.y = newY;
-    }
+    protected double x, y;      //đa số các method làm việc với Node như setLayout, setFitWidth/Height đều nhận kiểu double 
+    protected int timeLived;
+    
     // 2. Thuộc tính Giao diện (View)
-    private Node view; // Dùng kiểu Node để có thể linh hoạt chứa ImageView, Shape, hay Group đều được.
+    protected Node view; // Dùng kiểu Node để có thể linh hoạt chứa ImageView, Shape, hay Group đều được.
     public Node getView() {
         return this.view;
     }
@@ -59,11 +47,13 @@ public class GameObject {
         imgnode.setFitWidth(200);
         this.x = 300;
         this.y = 300;
+        this.timeLived = 0;
         // Gắn tọa độ ban đầu cho giao diện
         this.view.setLayoutX(x);
         this.view.setLayoutY(y);
     }
-        public void ExperimentUpdate2(int timeSinceCreation) { //thời gian tính theo đơn vị update = 1/60s
+    public abstract void update();
+    public void ExperimentUpdate2(int timeSinceCreation) { //thời gian tính theo đơn vị update = 1/60s
         /*
         - chạy theo hình sin, đi 1 chu kì hình sin từ bên trái sang bên phải màn hình    
         - chạy được 1 chu kì trong 5s (300 update)   (sin(2pi) = sin(1/150pi * 300update)) 
@@ -79,9 +69,9 @@ public class GameObject {
         double deltaY = (4 * Math.PI / 3) * Math.cos(timeSinceCreation * Math.PI / 150);
 
 
-        this.x = (int)currentX;
+        this.x = currentX;
         this.view.setLayoutX(currentX);
-        this.y = (int)currentY;
+        this.y = currentY;
         this.view.setLayoutY(currentY);
         this.view.setRotate(90 + Math.toDegrees(Math.atan2(deltaY,deltaX)));
     }
@@ -120,7 +110,7 @@ public class GameObject {
             double radius = 250;
 
             /*vẽ vòng tròn quỹ đạo và mũi tên vector trên trục Ox,Oy của chương trình (Oy ngược Oy trong Oxy cơ bản) sau đó lật về Oxy cơ bản) 
-            để hình dung được góc pha ban đầu và hướng quay (-90, cùng chiều kim đồng hồ theo Oxy gốc) 
+            để hình dung được góc pha ban đầu và hướng quay (-90, cùng chiều kim đồng hồ theo Oxy gốc, 90, ngược kim đồng hồ theo góc nhìn màn hình) 
             */
             currentX = coreX + radius*Math.cos(-Math.PI/2 +  2*Math.PI*(timeSinceCreation-120)/300);
             currentY = coreY + radius*Math.sin(-Math.PI/2 +  2*Math.PI*(timeSinceCreation-120)/300);
@@ -129,9 +119,9 @@ public class GameObject {
             double deltaY = radius*2*Math.PI/300*Math.cos(-Math.PI/2 +  2*Math.PI*(timeSinceCreation-120)/300);
             this.view.setRotate(-90 + Math.toDegrees(Math.atan2(deltaY,deltaX)));
         }
-        this.x = (int)currentX;
+        this.x = currentX;
         this.view.setLayoutX(currentX);
-        this.y = (int)currentY;
+        this.y = currentY;
         this.view.setLayoutY(currentY);
     }
 }
