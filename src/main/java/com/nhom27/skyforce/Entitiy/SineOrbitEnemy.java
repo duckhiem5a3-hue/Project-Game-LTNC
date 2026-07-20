@@ -1,8 +1,15 @@
 package com.nhom27.skyforce.Entitiy;
 
+import javafx.scene.image.Image;
+
 public class SineOrbitEnemy extends EnemyObject {
-    public SineOrbitEnemy() {
-        super();
+    //adjustable starting height
+    public SineOrbitEnemy(Image img, double startY) {
+        super(img,0,startY);
+    }
+    //default starting height (vị trí khởi tạo bên trái gần trên màn hình
+    public SineOrbitEnemy(Image img) {       
+        super(img,0,300);
     }
     @Override
     public void update(){  //lấy từ ExperimentUpdate2
@@ -12,7 +19,7 @@ public class SineOrbitEnemy extends EnemyObject {
         - chạy được hết màn hình 1200 pixel trong 5s
         - độ lệch pha tối đa 200 pixel
         */
-        double timeSinceCreation = this.timeLived;
+        double timeSinceCreation = this.timeLived%300;  //đưa x quay trở lại 0 (rìa trái màn hình) sau khi nó đã đi hết rìa phải
 
         double currentX = 4 * timeSinceCreation;
         double currentY = 300 + 200 * Math.sin(timeSinceCreation * Math.PI / 150);
@@ -21,7 +28,6 @@ public class SineOrbitEnemy extends EnemyObject {
         double deltaX = 4.0;
         double deltaY = (4 * Math.PI / 3) * Math.cos(timeSinceCreation * Math.PI / 150);
 
-
         this.x = currentX;
         this.view.setLayoutX(currentX);
         this.y = currentY;
@@ -29,5 +35,7 @@ public class SineOrbitEnemy extends EnemyObject {
         this.view.setRotate(90 + Math.toDegrees(Math.atan2(deltaY,deltaX)));
         
         this.timeLived +=1;    //timeLived tính bằng số lần trải qua update 
+
+        super.checkDeath();
     }
 }
