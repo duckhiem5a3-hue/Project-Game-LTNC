@@ -4,12 +4,12 @@ import javafx.scene.image.Image;
 
 public class SineOrbitEnemy extends EnemyObject {
     //adjustable starting height
-    public SineOrbitEnemy(Image img, double startX) {
-        super(img,startX,0);
+    public SineOrbitEnemy(Image img, double startY) {
+        super(img,0,startY);
     }
     //default starting height (vị trí khởi tạo bên trái gần trên màn hình
     public SineOrbitEnemy(Image img) {       
-        super(img,300,0);
+        super(img,0,300);
     }
     @Override
     public void update(){  //lấy từ ExperimentUpdate2

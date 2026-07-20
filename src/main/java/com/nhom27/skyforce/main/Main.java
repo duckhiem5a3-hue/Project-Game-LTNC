@@ -1,11 +1,11 @@
 package com.nhom27.skyforce.main;
 
-<<<<<<< HEAD
+
 import com.nhom27.skyforce.audio.AudioManager;
-=======
+
 import com.nhom27.skyforce.scenes.MenuScene;
 import com.nhom27.skyforce.Entitiy.GameObject;
->>>>>>> 12f81257fb80164f2be7e6ed3f17d5f86b891f99
+
 import com.nhom27.skyforce.scenes.SceneManager;
 import com.nhom27.skyforce.utils.AssetManager;
 

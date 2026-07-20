@@ -3,14 +3,16 @@ package com.nhom27.skyforce.Entitiy;
 import javafx.scene.image.Image;
 
 public class DiagonalBullet extends Bullet {
-    //default incline: arctan(2) khoảng 37 độ so với phương thẳng đứng 
-    //constructor: default incline, speed
-    public DiagonalBullet(Image img, double startX, double startY) {
-        super(img,startX, startY ,0.5);
+    //constructor: default speed , adjustable incline
+    public DiagonalBullet(Image img, double startX, double startY, double incline) {
+        super(img,startX, startY ,incline);
+        this.view.setRotate(Math.toDegrees(Math.atan2(x,y)));
     }
-    //constructor: adjustable speed
+    //constructor: adjustable speed and incline
+    //nếu đặt incline là âm thì đạn sẽ rẽ sang trái, đặt là dương thì rẽ sang phải
     public DiagonalBullet(Image img, double startX, double startY, double incline, double speed) {
-        super(img,startX, startY ,incline,speed);
+        super(img,startX, startY ,incline ,speed);
+        this.view.setRotate(Math.toDegrees(Math.atan2(x,y)));
     }
     @Override
     public void update() {
