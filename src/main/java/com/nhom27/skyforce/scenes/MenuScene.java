@@ -1,12 +1,6 @@
 package com.nhom27.skyforce.scenes;
 
-<<<<<<< HEAD
 import com.nhom27.skyforce.audio.AudioManager;
-=======
-import java.net.URL;
-
-import com.nhom27.skyforce.Entitiy.GameObject;
->>>>>>> 12f81257fb80164f2be7e6ed3f17d5f86b891f99
 import com.nhom27.skyforce.ui.buttons.CustomButton;
 import com.nhom27.skyforce.utils.AssetManager;
 
@@ -27,19 +21,15 @@ public class MenuScene {
 
     private void createMenuScene() {
 
-        //thử tạo gameobject
-        
-        //GameObject plane = new GameObject();
-        
-       
-    
+        // thử tạo gameobject
+        // GameObject plane = new GameObject();
+
         // Tạo một "tường" để có thể xếp các khung ảnh, nút lên
         StackPane root = new StackPane();
         // Tải ảnh vào bộ nhớ
         Image bgImage = AssetManager.getImage("background_home");
         // Tạo khung ảnh
         ImageView bgImageView = null;
-
         if (bgImage != null) {
             // Đóng khung ảnh
             bgImageView = new ImageView(bgImage);
@@ -54,9 +44,9 @@ public class MenuScene {
         VBox menuBox = new VBox(20);
         // Căn giữa màn hình
         menuBox.setAlignment(Pos.CENTER);
-
         CustomButton btnPlay = new CustomButton("Chơi Game", () -> {
-
+            PlayScene playScene = new PlayScene();
+            SceneManager.getInstance().switchScene(playScene.getScene());
         });
         btnSound = new CustomButton("Nhạc Nền: Bật", () -> {
             AudioManager.getInstance().toggleMute();
@@ -69,22 +59,24 @@ public class MenuScene {
         CustomButton btnExit = new CustomButton("Thoát", () -> {
             System.exit(0);
         });
-
         // Đặt nút bấm lên giá đỡ
         menuBox.getChildren().addAll(btnPlay, btnSound, btnExit);
 
         // Gắn khung ảnh, các nút lên "tường"
-        
         if (bgImageView != null) {
             root.getChildren().addAll(bgImageView, menuBox);
         } else {
             root.getChildren().add(menuBox);
         }
-        
-        //root.getChildren().add(plane.getView());
+
+        // root.getChildren().add(plane.getView());
 
         // Đóng gói "tường" thành "gói 2D"
         scene = new Scene(root, com.nhom27.skyforce.main.Main.WIDTH, com.nhom27.skyforce.main.Main.HEIGHT);
+        String css = AssetManager.getCss("styleButton");
+        if (css != null) {
+            scene.getStylesheets().add(css);
+        }
     }
 
     public Scene getScene() {

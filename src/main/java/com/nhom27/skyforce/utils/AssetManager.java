@@ -8,8 +8,9 @@ import javafx.scene.image.Image;
 import javafx.scene.media.Media;
 
 public class AssetManager {
-    public static final Map<String, Image> images = new HashMap();
-    public static final Map<String, Media> musics = new HashMap();
+    public static final Map<String, Image> images = new HashMap<>();
+    public static final Map<String, Media> musics = new HashMap<>();
+    public static final Map<String, String> stylesheets = new HashMap<>();
 
     public static void loadImage(String name, String path) {
         if (!images.containsKey(name)) {
@@ -21,7 +22,6 @@ public class AssetManager {
             } else {
                 System.out.println("Lỗi tải ảnh: " + name);
             }
-
         }
     }
 
@@ -54,13 +54,38 @@ public class AssetManager {
         return musics.get(name);
     }
 
+    public static void loadCss(String name, String path) {
+        if (!stylesheets.containsKey(name)) {
+            URL cssUrl = AssetManager.class.getResource(path);
+            if (cssUrl != null) {
+                stylesheets.put(name, cssUrl.toExternalForm());
+                System.out.println("Tải thành công CSS: " + name);
+            } else {
+                System.out.println("Lỗi tải CSS: " + name);
+            }
+        }
+    }
+
+    public static String getCss(String name) {
+        if (!stylesheets.containsKey(name)) {
+            System.out.println("CSS " + name + " chưa được lưu vào kho!");
+            return null;
+        }
+        return stylesheets.get(name);
+    }
+
     public static void loadAllAsset() {
         System.out.println("Đang tải các tài nguyên Ảnh: ");
         loadImage("background_home", "/com/nhom27/skyforce/textures/menu/background.png");
+        loadImage("background_play", "/com/nhom27/skyforce/textures/play/play_background.png");
         System.out.println("Tải ảnh hoàn tất!");
 
         System.out.println("Đang tải các tài nguyên Âm Thanh: ");
         loadMusic("background_home_music", "/com/nhom27/skyforce/sounds/background.mp3");
         System.out.println("Tải nhạc hoàn tất!");
+
+        System.out.println("Đang tải các tài nguyên CSS: ");
+        loadCss("styleButton", "/com/nhom27/skyforce/ui/buttons/styleButton.css");
+        System.out.println("Tải CSS hoàn tất!");
     }
 }

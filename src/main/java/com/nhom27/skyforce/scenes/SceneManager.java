@@ -1,13 +1,16 @@
 package com.nhom27.skyforce.scenes;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class SceneManager {
-
     // Đảm bảo được khởi tạo 1 lần duy nhất
     private static SceneManager instance;
-
     private Stage primaryStage;
+    private final Map<String, Scene> scenes = new HashMap<>();
 
     private SceneManager() {
     }
@@ -23,10 +26,16 @@ public class SceneManager {
         this.primaryStage = primaryStage;
     }
 
-    public void switchToMenu() {
-        MenuScene menuScene = new MenuScene();
-        primaryStage.setScene(menuScene.getScene());
+    public void addScene(String name, Scene scene) {
+        scenes.put(name, scene);
+    }
 
+    public void switchScene(Scene scene) {
+        primaryStage.setScene(scene);
+    }
+
+    public void switchScene(String name) {
+        primaryStage.setScene(scenes.get(name));
     }
 
 }
