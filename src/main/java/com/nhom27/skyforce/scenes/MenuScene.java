@@ -28,19 +28,11 @@ public class MenuScene {
     private void createMenuScene() {
 
         //thử tạo gameobject
-        String planePath = "/com/nhom27/skyforce/textures/menu/Spaceship1Blue.png";
-        URL planeimageUrl = getClass().getResource(planePath);
-        Image planeimg = new Image(planeimageUrl.toString());
-        ImageView planeimg2 = new ImageView(planeimg);
-        planeimg2.setFitWidth(100);
-        planeimg2.setFitHeight(100);
-        GameObject plane = new GameObject(planeimg2, 0, 0);
+        
+        //GameObject plane = new GameObject();
         
        
-        
-
-
-
+    
         // Tạo một "tường" để có thể xếp các khung ảnh, nút lên
         StackPane root = new StackPane();
         // Tải ảnh vào bộ nhớ
