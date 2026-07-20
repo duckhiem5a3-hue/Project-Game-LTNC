@@ -1,8 +1,11 @@
 package com.nhom27.skyforce.Entitiy;
+
+import javafx.scene.image.Image;
+
 public class CircleOrbitEnemy extends EnemyObject {
-    //default constructor, nhưng constructor chính sẽ có vị trí khởi tạo khác SineOrbitEnemy
-    public CircleOrbitEnemy() {
-        super();
+    //default constructor, vị trí khởi tạo 500 0 (phía trên giữa màn hình)
+    public CircleOrbitEnemy(Image img) {
+        super(img,500,0);
     }
     @Override
     public void update(){  //lấy từ ExperimentUpdate3
@@ -55,5 +58,7 @@ public class CircleOrbitEnemy extends EnemyObject {
         this.view.setLayoutY(currentY); 
 
         this.timeLived +=1;    //timeLived tính bằng số lần trải qua update 
+
+        super.checkDeath();
     }
 }
