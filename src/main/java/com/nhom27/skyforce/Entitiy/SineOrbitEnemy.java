@@ -4,12 +4,12 @@ import javafx.scene.image.Image;
 
 public class SineOrbitEnemy extends EnemyObject {
     //adjustable starting height
-    public SineOrbitEnemy(Image img, double startY) {
-        super(img,0,startY);
+    public SineOrbitEnemy(Image img, double startY, double[] hitbox) {
+        super(img,0,startY,150,150,hitbox);
     }
     //default starting height (vị trí khởi tạo bên trái gần trên màn hình
-    public SineOrbitEnemy(Image img) {       
-        super(img,0,300);
+    public SineOrbitEnemy(Image img, double[] hitbox) {       
+        super(img,0,300,150,150, hitbox);
     }
     @Override
     public void update(){  //lấy từ ExperimentUpdate2
@@ -28,11 +28,8 @@ public class SineOrbitEnemy extends EnemyObject {
         double deltaX = 4.0;
         double deltaY = (4 * Math.PI / 3) * Math.cos(timeSinceCreation * Math.PI / 150);
 
-        this.x = currentX;
-        this.view.setLayoutX(currentX);
-        this.y = currentY;
-        this.view.setLayoutY(currentY);
-        this.view.setRotate(90 + Math.toDegrees(Math.atan2(deltaY,deltaX)));
+        double rotateAngle = 90 + Math.toDegrees(Math.atan2(deltaY,deltaX));
+        this.setPos(currentX, currentY, rotateAngle);
         
         this.timeLived +=1;    //timeLived tính bằng số lần trải qua update 
 

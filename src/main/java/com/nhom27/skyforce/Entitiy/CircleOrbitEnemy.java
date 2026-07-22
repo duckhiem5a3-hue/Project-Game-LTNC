@@ -4,8 +4,8 @@ import javafx.scene.image.Image;
 
 public class CircleOrbitEnemy extends EnemyObject {
     //default constructor, vị trí khởi tạo 500 0 (phía trên giữa màn hình)
-    public CircleOrbitEnemy(Image img) {
-        super(img,500,0);
+    public CircleOrbitEnemy(Image img, double[] hitbox) {
+        super(img,500,0,150,150, hitbox);
     }
     @Override
     public void update(){  //lấy từ ExperimentUpdate3
@@ -29,14 +29,15 @@ public class CircleOrbitEnemy extends EnemyObject {
         */
         double currentX = 0;
         double currentY = 0;
+        double rotateAngle = 0;
         if(timeSinceCreation <= 60) {
             currentX = 500;
             currentY = (double)150/60*timeSinceCreation;
-            this.view.setRotate(180);
+            rotateAngle = 180;
         } else if(timeSinceCreation > 60 && timeSinceCreation < 120) {
             currentX = 500;
             currentY = (double)150;
-            this.view.setRotate(180 + (double)90*(timeSinceCreation-60)/60);
+            rotateAngle = 180+ (double)90*(timeSinceCreation-60)/60;
         } else {
             double coreX = 500;
             double coreY = 400;
@@ -50,15 +51,10 @@ public class CircleOrbitEnemy extends EnemyObject {
 
             double deltaX = radius*2*Math.PI/300*-Math.sin(-Math.PI/2 +  2*Math.PI*(timeSinceCreation-120)/300);
             double deltaY = radius*2*Math.PI/300*Math.cos(-Math.PI/2 +  2*Math.PI*(timeSinceCreation-120)/300);
-            this.view.setRotate(-90 + Math.toDegrees(Math.atan2(deltaY,deltaX)));
+            rotateAngle = -90 + Math.toDegrees(Math.atan2(deltaY,deltaX));
         }
-        this.x = currentX;
-        this.view.setLayoutX(currentX);
-        this.y = currentY;
-        this.view.setLayoutY(currentY); 
-
+        this.setPos(currentX, currentY, rotateAngle);
         this.timeLived +=1;    //timeLived tính bằng số lần trải qua update 
-
         super.checkDeath();
     }
 }

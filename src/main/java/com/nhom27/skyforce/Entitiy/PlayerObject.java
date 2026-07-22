@@ -1,6 +1,7 @@
 package com.nhom27.skyforce.Entitiy;
 
 import javafx.scene.image.Image;
+import javafx.scene.shape.Shape;
 
 public class PlayerObject extends GameObject {
     protected int health;
@@ -8,12 +9,16 @@ public class PlayerObject extends GameObject {
     protected int timeInBuff;
     protected int timeSinceLastBullet;
     //default constructor
-    public PlayerObject(Image img) {
-        super();
+    public PlayerObject(Image img, Shape shape, double sizeX, double sizeY) {
+        super(img,500,800, sizeX,sizeY);
         health = 100;
         gettingBuffed = false;
         timeInBuff = 0;
         timeSinceLastBullet = 0;
+        this.view.setFitHeight(sizeY);
+        this.view.setFitWidth(sizeX);
+        this.setPos(500, 800);
+
     }
     //Các phương thức dưới đây để dành cho class GameManager
     /*    
