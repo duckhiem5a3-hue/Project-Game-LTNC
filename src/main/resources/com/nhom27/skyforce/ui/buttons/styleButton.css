@@ -6,6 +6,26 @@
     -fx-max-width: 250px;
 }
 
+/* Pause Button Overrides (Bổ sung .button.pause-button để tăng độ ưu tiên CSS) */
+.button.pause-button {
+    -fx-pref-width: 60px;
+    -fx-min-width: 60px;
+    -fx-max-width: 60px;
+    -fx-pref-height: 40px;
+    -fx-min-height: 40px;
+    -fx-max-height: 40px;
+}
+
+.button.pause-button .front {
+    -fx-padding: 4px 8px;
+}
+
+.button.pause-button .front .label {
+    -fx-font-size: 14px;
+}
+
+
+
 /* Shadow layer */
 .button .shadow {
     -fx-background-color: rgba(0, 0, 0, 0.40);
@@ -15,28 +35,24 @@
 
 /* Edge layer */
 .button .edge {
-    -fx-background-color: linear-gradient(
-        to left,
-        #18344a 0%,
-        #4d8db6 8%,
-        #4d8db6 92%,
-        #18344a 100%
-    );
+    -fx-background-color: linear-gradient(to left,
+            #18344a 0%,
+            #4d8db6 8%,
+            #4d8db6 92%,
+            #18344a 100%);
     -fx-background-radius: 10px;
 }
 
 /* Front layer */
 .button .front {
-    -fx-background-color: linear-gradient(
-        to bottom,
-        #335f84 0%,
-        #244058 55%,
-        #1b3144 100%
-    );
+    -fx-background-color: linear-gradient(to bottom,
+            #335f84 0%,
+            #244058 55%,
+            #1b3144 100%);
 
     -fx-background-radius: 10px;
 
-    -fx-border-color: rgba(255,255,255,0.12);
+    -fx-border-color: rgba(255, 255, 255, 0.12);
     -fx-border-width: 1px;
     -fx-border-radius: 10px;
 
@@ -59,23 +75,19 @@
 
 .button:hover .front {
 
-    -fx-background-color: linear-gradient(
-        to bottom,
-        #3d729d 0%,
-        #2f5779 55%,
-        #23415a 100%
-    );
+    -fx-background-color: linear-gradient(to bottom,
+            #3d729d 0%,
+            #2f5779 55%,
+            #23415a 100%);
 
-    -fx-border-color: rgba(120,210,255,0.35);
+    -fx-border-color: rgba(120, 210, 255, 0.35);
 
-    -fx-effect: dropshadow(
-        gaussian,
-        rgba(77,141,182,0.45),
-        15,
-        0.25,
-        0,
-        0
-    );
+    -fx-effect: dropshadow(gaussian,
+            rgba(77, 141, 182, 0.45),
+            15,
+            0.25,
+            0,
+            0);
 
     -fx-translate-y: -6px;
 }
@@ -87,13 +99,34 @@
 
 .button:pressed .front {
 
-    -fx-background-color: linear-gradient(
-        to bottom,
-        #28455f 0%,
-        #1f3649 100%
-    );
+    -fx-background-color: linear-gradient(to bottom,
+            #28455f 0%,
+            #1f3649 100%);
 
     -fx-effect: none;
 
     -fx-translate-y: -2px;
+}
+
+/* Pause Overlay Styles */
+.pause-overlay {
+    -fx-background-color: rgba(0, 0, 0, 0.65);
+}
+
+.pause-menu-card {
+    -fx-background-color: linear-gradient(to bottom, #1e2c3a 0%, #121b24 100%);
+    -fx-border-color: rgba(120, 210, 255, 0.3);
+    -fx-border-width: 2px;
+    -fx-border-radius: 16px;
+    -fx-background-radius: 16px;
+    -fx-padding: 30px 40px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.8), 20, 0.5, 0, 4);
+}
+
+.pause-title {
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+    -fx-font-family: "System";
+    -fx-effect: dropshadow(gaussian, rgba(77, 141, 182, 0.8), 10, 0.5, 0, 0);
 }

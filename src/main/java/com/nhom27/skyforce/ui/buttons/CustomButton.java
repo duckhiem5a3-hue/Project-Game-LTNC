@@ -1,5 +1,7 @@
 package com.nhom27.skyforce.ui.buttons;
 
+import com.nhom27.skyforce.utils.AssetManager;
+
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
@@ -29,10 +31,11 @@ public class CustomButton extends Button {
         // Đặt cấu trúc đồ họa cho Button
         this.setGraphic(graphicPane);
 
-        // Áp dụng đồ hoạc CSS cho Button
-        String css = this.getClass().getResource("/com/nhom27/skyforce/ui/buttons/styleButton.css")
-                .toExternalForm();
-        this.getStylesheets().add(css);
+        // Nạp CSS từ kho AssetManager
+        String css = AssetManager.getCss("styleButton");
+        if (css != null && !this.getStylesheets().contains(css)) {
+            this.getStylesheets().add(css);
+        }
 
         this.setOnAction(event -> {
             if (action != null) {
