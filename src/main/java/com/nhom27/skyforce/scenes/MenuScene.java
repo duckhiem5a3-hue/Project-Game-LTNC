@@ -21,10 +21,6 @@ public class MenuScene {
     }
 
     private void createMenuScene() {
-
-        // thử tạo gameobject
-        // GameObject plane = new GameObject();
-
         // Tạo một "tường" để có thể xếp các khung ảnh, nút lên
         StackPane root = new StackPane();
         // Tải ảnh vào bộ nhớ
@@ -41,25 +37,44 @@ public class MenuScene {
             root.setStyle("-fx-background-color: black;");
         }
 
+        Image logoImage = AssetManager.getImage("logo_game");
+        ImageView logoImageView = null;
+        if (logoImage != null) {
+            logoImageView = new ImageView(logoImage);
+            // Tùy chỉnh kích thước logo (ví dụ: rộng 400px, giữ nguyên tỉ lệ)
+            logoImageView.setFitWidth(700);
+            logoImageView.setPreserveRatio(true);
+        } else {
+            System.out.println("Lỗi: Không tìm thấy ảnh logo!");
+        }
+
         // Tạo giá đỡ dọc cách nhau 20px để hiển thị các nút
         VBox menuBox = new VBox(20);
         // Căn giữa màn hình
         menuBox.setAlignment(Pos.CENTER);
-        CustomButton btnPlay = new CustomButton("Chơi Game", () -> {
+
+        CustomButton btnPlay = new CustomButton("Play Game", "button_blue", () -> {
             PlayScene playScene = new PlayScene();
             SceneManager.getInstance().switchScene(playScene.getScene());
         });
-        btnSound = new CustomButton("Nhạc Nền: Bật", () -> {
+        btnSound = new CustomButton("Music: On", "button_blue", () -> {
             AudioManager.getInstance().toggleMute();
             if (AudioManager.getInstance().isMuted()) {
-                btnSound.updateLabel("Nhạc Nền: Tắt");
+                btnSound.updateLabel("Music: Off");
             } else {
-                btnSound.updateLabel("Nhạc Nền: Bật");
+                btnSound.updateLabel("Music: On");
             }
         });
-        CustomButton btnExit = new CustomButton("Thoát", () -> {
+        CustomButton btnExit = new CustomButton("Exit", "button_blue", () -> {
             System.exit(0);
         });
+
+        // Đặt logo (nếu có) và các nút bấm lên giá đỡ VBox
+        if (logoImageView != null) {
+            menuBox.getChildren().add(logoImageView);
+            // Tăng khoảng cách phía dưới logo thêm 50px (bạn có thể thay đổi số 50 này)
+            VBox.setMargin(logoImageView, new javafx.geometry.Insets(0, 0, 50, 0));
+        }
         // Đặt nút bấm lên giá đỡ
         menuBox.getChildren().addAll(btnPlay, btnSound, btnExit);
 
@@ -74,10 +89,6 @@ public class MenuScene {
 
         // Đóng gói "tường" thành "gói 2D"
         scene = new Scene(root, com.nhom27.skyforce.main.Main.WIDTH, com.nhom27.skyforce.main.Main.HEIGHT);
-        String css = AssetManager.getCss("styleButton");
-        if (css != null) {
-            scene.getStylesheets().add(css);
-        }
     }
 
     public Scene getScene() {
